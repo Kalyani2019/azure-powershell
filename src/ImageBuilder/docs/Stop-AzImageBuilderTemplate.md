@@ -29,23 +29,34 @@ Cancel the long running image build based on the image template
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
+### Example 1: Stop image template creation
 ```powershell
-PS C:\> {{ Add code here }}
+PS C:\> Start-AzImageBuilderTemplate -ImageTemplateName template-name-sn78hg -ResourceGroupName wyunchi-imagebuilder -AsJob 
 
-{{ Add output here }}
+Id     Name            PSJobTypeName   State         HasMoreData     Location             Command
+--     ----            -------------   -----         -----------     --------             -------
+1      Start-AzImageB…                 Running       True            localhost            Start-AzImageBuilderTemp…
+
+PS C:\> Stop-AzImageBuilderTemplate -ImageTemplateName template-name-sn78hg -ResourceGroupName wyunchi-imagebuilder
+
 ```
 
-{{ Add description here }}
+This command stops image template creation.
 
-### Example 2: {{ Add title here }}
+### Example 2: Stop image template creation
 ```powershell
-PS C:\> {{ Add code here }}
+PS C:\> Start-AzImageBuilderTemplate -ImageTemplateName template-name-sn78hg -ResourceGroupName wyunchi-imagebuilder -AsJob 
 
-{{ Add output here }}
+Id     Name            PSJobTypeName   State         HasMoreData     Location             Command
+--     ----            -------------   -----         -----------     --------             -------
+2      Start-AzImageB…                 Running       True            localhost            Start-AzImageBuilderTemp…
+
+PS C:\> $template = Get-AzImageBuilderTemplate -ResourceGroupName wyunchi-imagebuilder -Name template-name-sn78hg
+PS C:\> Stop-AzImageBuilderTemplate -InputObject $template 
+
 ```
 
-{{ Add description here }}
+This command stops image template creation.
 
 ## PARAMETERS
 
@@ -218,6 +229,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ALIASES
 
 COMPLEX PARAMETER PROPERTIES
+
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 

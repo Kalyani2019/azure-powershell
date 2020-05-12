@@ -30,23 +30,22 @@ Delete a virtual machine image template
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
+### Example 1: Remove a image template
 ```powershell
-PS C:\> {{ Add code here }}
+PS C:\> Remove-AzImageBuilderTemplate -ImageTemplateName template-name-dmt6ze -ResourceGroupName wyunchi-imagebuilder
 
-{{ Add output here }}
 ```
 
-{{ Add description here }}
+This command removes a image template.
 
-### Example 2: {{ Add title here }}
+### Example 2: Remove a image template
 ```powershell
-PS C:\> {{ Add code here }}
+PS C:\> $template = Get-AzImageBuilderTemplate -ImageTemplateName template-name-3uo8p6 -ResourceGroupName wyunchi-imagebuilder
+PS C:\> Remove-AzImageBuilderTemplate -InputObject $template
 
-{{ Add output here }}
 ```
 
-{{ Add description here }}
+This command removes a image template.
 
 ## PARAMETERS
 
@@ -219,6 +218,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ALIASES
 
 COMPLEX PARAMETER PROPERTIES
+
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 

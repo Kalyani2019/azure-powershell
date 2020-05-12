@@ -35,23 +35,39 @@ Get the specified run output for the specified image template resource
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
+### Example 1: List all run results under a template
 ```powershell
-PS C:\> {{ Add code here }}
+PS C:\> Get-AzImageBuilderRunOutput -ImageTemplateName lucas-imagetemplate -ResourceGroupName wyunchi-imagebuilder
 
-{{ Add output here }}
+Name          Type
+----          ----
+image_lucas_1 Microsoft.VirtualMachineImages/imageTemplates/runOutputs
 ```
 
-{{ Add description here }}
+This command lists all run results under a template.
 
-### Example 2: {{ Add title here }}
+### Example 2: Get a run result under a template
 ```powershell
-PS C:\> {{ Add code here }}
+PS C:\> Get-AzImageBuilderRunOutput -ImageTemplateName template-name-u7gjqx -ResourceGroupName wyunchi-imagebuilder -RunOutputName runout-template-name-u7gjqx 
 
-{{ Add output here }}
+Name                        Type
+----                        ----
+runout-template-name-u7gjqx Microsoft.VirtualMachineImages/imageTemplates/runOutputs
 ```
 
-{{ Add description here }}
+This command gets a run result under a template.
+
+### Example 3: Get a run result under a template
+```powershell
+PS C:\> $result = Get-AzImageBuilderRunOutput -ImageTemplateName template-name-u7gjqx -ResourceGroupName wyunchi-imagebuilder -RunOutputName runout-template-name-u7gjqx
+PS C:\> Get-AzImageBuilderRunOutput -InputObject $result
+
+Name                        Type
+----                        ----
+runout-template-name-u7gjqx Microsoft.VirtualMachineImages/imageTemplates/runOutputs
+```
+
+This command gets a run result under a template.
 
 ## PARAMETERS
 
@@ -163,6 +179,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ALIASES
 
 COMPLEX PARAMETER PROPERTIES
+
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 

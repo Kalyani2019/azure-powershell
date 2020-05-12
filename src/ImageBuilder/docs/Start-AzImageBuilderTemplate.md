@@ -30,23 +30,22 @@ Create artifacts from a existing image template
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
+### Example 1: Start an image template
 ```powershell
-PS C:\> {{ Add code here }}
+PS C:\> Start-AzImageBuilderTemplate -ResourceGroupName wyunchi-imagebuilder -Name template-name-sn78hg
 
-{{ Add output here }}
 ```
 
-{{ Add description here }}
+This command starts an image template.
 
-### Example 2: {{ Add title here }}
+### Example 2: Start an image template
 ```powershell
-PS C:\> {{ Add code here }}
+PS C:\> $template = Get-AzImageBuilderTemplate -ResourceGroupName wyunchi-imagebuilder -Name template-name-sn78hg
+PS C:\> Start-AzImageBuilderTemplate -InputObject $template
 
-{{ Add output here }}
 ```
 
-{{ Add description here }}
+This command starts an image template.
 
 ## PARAMETERS
 
@@ -219,6 +218,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ALIASES
 
 COMPLEX PARAMETER PROPERTIES
+
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 

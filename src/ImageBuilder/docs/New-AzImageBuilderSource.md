@@ -12,16 +12,22 @@ Describes a virtual machine image source for building, customizing and distribut
 
 ## SYNTAX
 
-### PlatformImage (Default)
-```
-New-AzImageBuilderSource -SourceTypePlatformImage [-Offer <String>] [-PlanName <String>]
- [-PlanProduct <String>] [-PlanPublisher <String>] [-Publisher <String>] [-Sku <String>] [-Version <String>]
- [-Confirm] [-WhatIf] [<CommonParameters>]
-```
-
-### ManagedImage
+### ManagedImage (Default)
 ```
 New-AzImageBuilderSource -SourceTypeManagedImage [-ImageId <String>] [-Confirm] [-WhatIf] [<CommonParameters>]
+```
+
+### PlatformImage
+```
+New-AzImageBuilderSource -SourceTypePlatformImage [-Offer <String>] [-Publisher <String>] [-Sku <String>]
+ [-Version <String>] [-Confirm] [-WhatIf] [<CommonParameters>]
+```
+
+### PlatformImagePlanInfo
+```
+New-AzImageBuilderSource -PlanName <String> -PlanProduct <String> -PlanPublisher <String>
+ -SourceTypePlatformImage [-Offer <String>] [-Publisher <String>] [-Sku <String>] [-Version <String>]
+ [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
 ### SharedImageVersion
@@ -35,23 +41,39 @@ Describes a virtual machine image source for building, customizing and distribut
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
+### Example 1: Create a managed image source
 ```powershell
-PS C:\> {{ Add code here }}
+PS C:\> $imageid = '/subscriptions/9e223dbe-3399-4e19-88eb-0975f02ac87f/resourceGroups/wyunchi-imagebuilder/providers/Microsoft.Compute/images/test-linux-image'
+PS C:\> New-AzImageBuilderSource -SourceTypeManagedImage -ImageId $imageid
 
-{{ Add output here }}
+Type         ImageId
+----         -------
+ManagedImage /subscriptions/9e223dbe-3399-4e19-88eb-0975f02ac87f/resourceGroups/wyunchi-imagebuilder/providers/Microsoft.Compute/images/test-linux-image
 ```
 
-{{ Add description here }}
+This command creates a managed image source.
 
-### Example 2: {{ Add title here }}
+### Example 2: Create a shared image source
 ```powershell
-PS C:\> {{ Add code here }}
+PS C:\> New-AzImageBuilderSource -SourceTypeSharedImageVersion -ImageVersionId /subscriptions/9e223dbe-3399-4e19-88eb-0975f02ac87f/resourceGroups/wyunchi-imagebuilder/providers/Microsoft.Compute/galleries/lucasimagegallery/images/myimagedefinition/versions/1.0.0 
 
-{{ Add output here }}
+Type               ImageVersionId
+----               --------------
+SharedImageVersion /subscriptions/9e223dbe-3399-4e19-88eb-0975f02ac87f/resourceGroups/wyunchi-imagebuilder/providers/Microsoft.Compute/galleries/lucasimagegallery/images/myimagedefinition/versions/1.0.0
 ```
 
-{{ Add description here }}
+This command creates a shared image source.
+
+### Example 3: Create a platfrom image source
+```powershell
+PS C:\> New-AzImageBuilderSource -SourceTypePlatformImage -Publisher 'Canonical' -Offer 'UbuntuServer' -Sku '18.04-LTS' -Version 'latest'
+
+Type          Offer        Publisher Sku       Version
+----          -----        --------- ---       -------
+PlatformImage UbuntuServer Canonical 18.04-LTS latest
+```
+
+This command creates a platfrom image source.
 
 ## PARAMETERS
 
@@ -90,7 +112,7 @@ Image offer from the [Azure Gallery Images](https://docs.microsoft.com/en-us/res
 
 ```yaml
 Type: System.String
-Parameter Sets: PlatformImage
+Parameter Sets: PlatformImage, PlatformImagePlanInfo
 Aliases:
 
 Required: False
@@ -105,10 +127,10 @@ Name of the purchase plan.
 
 ```yaml
 Type: System.String
-Parameter Sets: PlatformImage
+Parameter Sets: PlatformImagePlanInfo
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -119,10 +141,11 @@ Accept wildcard characters: False
 Product of the purchase plan.
 
 ```yaml
-Parameter Sets: PlatformImage
+Type: System.String
+Parameter Sets: PlatformImagePlanInfo
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -134,10 +157,10 @@ Publisher of the purchase plan.
 
 ```yaml
 Type: System.String
-Parameter Sets: PlatformImage
+Parameter Sets: PlatformImagePlanInfo
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -149,7 +172,7 @@ Image Publisher in [Azure Gallery Images](https://docs.microsoft.com/en-us/rest/
 
 ```yaml
 Type: System.String
-Parameter Sets: PlatformImage
+Parameter Sets: PlatformImage, PlatformImagePlanInfo
 Aliases:
 
 Required: False
@@ -164,7 +187,7 @@ Image sku from the [Azure Gallery Images](https://docs.microsoft.com/en-us/rest/
 
 ```yaml
 Type: System.String
-Parameter Sets: PlatformImage
+Parameter Sets: PlatformImage, PlatformImagePlanInfo
 Aliases:
 
 Required: False
@@ -194,7 +217,7 @@ Describes an image source from [Azure Gallery Images](https://docs.microsoft.com
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
-Parameter Sets: PlatformImage
+Parameter Sets: PlatformImage, PlatformImagePlanInfo
 Aliases:
 
 Required: True
@@ -224,7 +247,7 @@ Image version from the [Azure Gallery Images](https://docs.microsoft.com/en-us/r
 
 ```yaml
 Type: System.String
-Parameter Sets: PlatformImage
+Parameter Sets: PlatformImage, PlatformImagePlanInfo
 Aliases:
 
 Required: False
